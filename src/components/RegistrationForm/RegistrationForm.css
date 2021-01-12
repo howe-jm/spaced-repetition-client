@@ -1,0 +1,29 @@
+
+.registration-form {
+    color: rgb(246, 232, 171);
+    display: flex;
+    align-self: center;
+    flex-flow: column wrap;
+    background: rgb(95, 71, 51);
+    width: 25%;
+    min-width: 160px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.registration-form input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    min-width: 150px;
+}
+
+.registration-form button { 
+    background: rgb(246, 232, 171);
+    border: none;
+    border-radius: 4px;
+}
+
+.registration-form a {
+    color: white
+}

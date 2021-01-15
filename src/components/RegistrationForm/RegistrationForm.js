@@ -4,11 +4,14 @@ import { Input, Required, Label } from '../Form/Form';
 import AuthApiService from '../../services/auth-api-service';
 import Button from '../Button/Button';
 import './RegistrationForm.css';
+import UserContext from '../../contexts/UserContext';
 
 class RegistrationForm extends Component {
   static defaultProps = {
     onRegistrationSuccess: () => {},
   };
+
+  static contextType = UserContext;
 
   state = { error: null };
 
@@ -24,12 +27,23 @@ class RegistrationForm extends Component {
     })
       .then((user) => {
         name.value = '';
-        username.value = '';
-        password.value = '';
-        this.props.onRegistrationSuccess();
+        AuthApiService.postLogin({
+          username: username.value,
+          password: password.value,
+        })
+          .then((result) => {
+            username.value = '';
+            password.value = '';
+            this.context.processLogin(result.authToken);
+            this.props.onLoginSuccess();
+          })
+          .catch((result) => {
+            console.log(result);
+          });
       })
-      .catch((res) => {
-        this.setState({ error: res.error });
+
+      .catch((result) => {
+        console.log({ error: result.error });
       });
   };
 
@@ -55,14 +69,20 @@ class RegistrationForm extends Component {
               Choose a username
               <Required />
             </Label>
-            <Input id='registration-username-input' name='username' required />
+            <Input id='registration-username-input' autoComplete='username' name='username' required />
           </div>
           <div>
             <Label htmlFor='registration-password-input'>
               Choose a password
               <Required />
             </Label>
-            <Input id='registration-password-input' name='password' type='password' required />
+            <Input
+              id='registration-password-input'
+              autoComplete='current-password'
+              name='password'
+              type='password'
+              required
+            />
           </div>
           <footer>
             <Button type='submit'>Sign up</Button>{' '}

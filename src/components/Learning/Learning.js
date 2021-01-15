@@ -51,7 +51,6 @@ class Dashboard extends Component {
 
   renderAnswer = () => {
     const { isCorrect } = this.state.guessResult;
-
     if (isCorrect === true) {
       return (
         <div className='answer-container'>
@@ -60,8 +59,11 @@ class Dashboard extends Component {
             <h3>{this.state.word.nextWord}</h3> translates to: <h3>{this.state.guessResult.answer}</h3>
           </div>
           <form className='card-form'>
+            <h3>
+              Next up: <span className='next-up'>{this.state.guessResult.nextWord}</span>
+            </h3>
             <button className='submit-card' onClick={(e) => this.nextWord(e)}>
-              Next Word
+              Continue
             </button>
             <button className='submit-card' onClick={(e) => this.handleDashboardClick(e)}>
               Back to Dashboard
@@ -77,8 +79,11 @@ class Dashboard extends Component {
             <h3>{this.state.word.nextWord}</h3> translates to: <h3>{this.state.guessResult.answer}</h3>
           </div>
           <form className='card-form'>
+            <h3>
+              Next up: <span className='next-up'>{this.state.guessResult.nextWord}</span>
+            </h3>
             <button className='submit-card' onClick={(e) => this.nextWord(e)}>
-              Next Word
+              Continue
             </button>
             <button className='submit-card' onClick={(e) => this.handleDashboardClick(e)}>
               Back to Dashboard
@@ -109,15 +114,19 @@ class Dashboard extends Component {
   testCard = () => {
     return (
       <div className='test-card-container'>
-        <h3>Total Score: {this.state.word.totalScore}</h3>
+        <h2>Total Score: {this.state.word.totalScore}</h2>
         <div className='this-word'>
           <h3>{this.state.word.nextWord}</h3>
           <p>Correct Guesses: {this.state.word.wordCorrectCount}</p>
           <p>Incorrect Guesses: {this.state.word.wordIncorrectCount}</p>
         </div>
         <form className='card-form' onSubmit={(e) => this.handleSubmit(e)}>
+          <label htmlFor='guess-input'>
+            <p className='label-text'>Answer Here</p>
+          </label>
           <input
             type='text'
+            id='guess-input'
             className='guess-input'
             onChange={(event) => this.setState({ guess: event.target.value })}
             required

@@ -17,7 +17,12 @@
     background: rgb(95, 71, 51);
     padding: 10px;
     margin-bottom: 20px;
+    width: 100%;
+    min-width: 300px;
+    align-self: center;
 }
+
+
 
 .this-word {
     background: rgb(95, 71, 51);
@@ -47,11 +52,11 @@
 }
 
 .original-word {
-    color: rgb(248, 60, 27);
+    color:rgb(255, 107, 131);
 }
 
 .guess-input {
-    max-width: 300px;
+    width: 90%;
     align-self: center;
 }
 
@@ -60,11 +65,24 @@
 }
 
 .this-word h3 {
-    color: rgb(248, 60, 27);
+    color:rgb(255, 107, 131);
 }
 
 .answer-word h3 {
-    color: rgb(248, 60, 27);
+    color:rgb(255, 107, 131);
+}
+
+.card-form h3 {
+    color:rgb(246, 232, 171);
+    margin-bottom: 5px;
+}
+
+.label-text {
+    color:rgb(246, 232, 171);
+}
+
+.next-up {
+    color:rgb(255, 107, 131);
 }
 
 .submit-card {

@@ -31,19 +31,19 @@ class RegistrationForm extends Component {
           username: username.value,
           password: password.value,
         })
-          .then((result) => {
+          .then((res) => {
             username.value = '';
             password.value = '';
-            this.context.processLogin(result.authToken);
+            this.context.processLogin(res.authToken);
             this.props.onLoginSuccess();
           })
-          .catch((result) => {
-            console.log(result);
+          .catch((res) => {
+            console.log(res);
           });
       })
 
-      .catch((result) => {
-        console.log({ error: result.error });
+      .catch((res) => {
+        console.log({ error: res.error });
       });
   };
 

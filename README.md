@@ -1,4 +1,57 @@
-# Spaced Repetition Capstone
+# Spaced repetition WebApp
+
+Welcome to the Spaced Repetition WebApp!
+
+This webapp has serves to help with learning topics where spaced repetition has been shown to improve a user's ability to learn information by repeatedly being presented in 'flash card' style method. For example, many languages are learned using spaced repetition - hold up a card with a word, attempt to translate the word, and turn the card over to reveal the true translation on the other side!
+
+This app works similarly by presenting the user with a word in a foreign language (in the deployed example, the fictional Klingon language is used, referencing the Klingon Pocket Dictionary), giving the user an input form to attempt to translate the word, and checking it against the true answer. It provides feedback for correct and incorrect answers, and will always reveal the correct answer after an attempt.
+
+This Spaced Repetition WebApp allows a user to create a unique username and password, and will track correct and incorrect answers.
+
+Though the deployed example is limited in scope, the list of words can be as long as the user likes. 
+
+## Links
+
+Deployed App: https://spaced-repetition-howe-jm.vercel.app/
+API Github: https://github.com/howe-jm/spaced-repetition-server
+Client Github: https://github.com/howe-jm/spaced-repetition-client
+
+## Client
+
+The Spaced Repetition Client allows the user to interface with the app via a webpage.
+
+The user can:
+
+-Create a new account with a name, username, and password.
+-Login to an existing account.
+-View a list of words in the currently selected language.
+-Begin spaced repetition practice.
+-Attempt to answer prompts correctly.
+-View the results of their attempted guess.
+-Track the running total of correct guesses.
+-Track correct and incorrect guesses for each word.
+-Log out of the app.
+## API
+
+While this API can run independently of the client and be used for a custom client, it is intended to be used with the accompanying Spaced Repetition Client.
+
+### API Endpoints
+
+`/api/user/` - `POST`
+User creation endpoint. When supplied with the name, username, and password, a new user can be created.
+
+`/api/auth/token/` - `POST`
+Submitting a username and password will check against the database for authentication.
+
+`/api/language/` - `GET`
+This endpoint will return the name of the language, and the full list of nodes in the linked list.
+
+`/api/language/head` - `GET`
+This endpoint returns the next node in line in the linked list.
+
+`/api/language/guess` - `POST`
+This endpoint handles submissions of a user's attempt to translate the word.
+
 
 ## Setup
 
@@ -14,34 +67,3 @@ Find instructions to setup the API here https://github.com/Thinkful-Ed/spaced-re
 ## Running project
 
 This is a `create-react-app` project so `npm start` will start the project in development mode with hot reloading by default.
-
-## Running the tests
-
-This project uses [Cypress IO](https://docs.cypress.io) for integration testing using the Chrome browser.
-
-Cypress has the following expectations:
-
-- You have cypress installed (this is a devDependency of the project)
-- You have your application running at http://localhost:3000.
-  - You can change the address of this expectation in the `./cypress.json` file.
-- Your `./src/config.js` is using http://localhost:8000/api as the `API_ENDPOINT`
-
-To start the tests run the command:
-
-```bash
-npm run cypress:open
-```
-
-On the first run of this command, the cypress application will verify its install. Any other runs after this, the verification will be skipped.
-
-The command will open up the Cypress application which reads tests from the `./cypress/integration/` directory. You can then run individual tests by clicking on the file names or run all tests by clicking the "run all tests" button in the cypress GUI.
-
-Tests will assert against your running localhost client application.
-
-You can also start all of the tests in the command line only (not using the GUI) by running the command:
-
-```bash
-npm run cypress:run
-```
-
-This will save video recordings of the test runs in the directory `./cypress/videos/`.
